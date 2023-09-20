@@ -2,7 +2,7 @@
 
 ## Use Case
 
-In this repository, we provide a simple solution to access a service running on a remote server, from behind a firewall. Say, we're trying to access this service running on the remote server: 10.0.0.107:9090. After doing this full setup, you will be able to access this service on the local server (and LAN) on 127.0.0.1:69090 or <local-server-lan-ip>:69090.
+In this repository, we provide a simple solution to access a service running on a remote server, from behind a firewall. Say, we're trying to access this service running on the remote server: 10.0.0.107:9090. After doing this full setup, you will be able to access this service on the local server (and LAN) on 127.0.0.1:69090 or [local-server-lan-ip]:69090.
 
 This solution is particularly useful when the local area network (LAN) is behind a strong firewall that blocks specific ports and protocols through deep packet inspection. By utilizing frp, you can bypass these restrictions and access a service running on a remote server within the LAN.
 
