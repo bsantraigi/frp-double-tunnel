@@ -6,7 +6,13 @@ In this repository, we provide a simple solution to access a service running on 
 
 This solution is particularly useful when the local area network (LAN) is behind a strong firewall that blocks specific ports and protocols through deep packet inspection. By utilizing frp, you can bypass these restrictions and access a service running on a remote server within the LAN.
 
-## Setup frp (on both remote and local servers)
+## How does it work?
+
+The local server runs frpc as a client, connecting to the remote frps server. This connection allows the local frpc to forward its frps port to the remote server. Similarly, the remote server runs frpc as a client, connecting to the local frps server. This connection enables the remote frpc to forward the main service port 9090 from the remote server to the local server. Through these connections, the service running on the remote server becomes accessible on the local server, bypassing firewall restrictions within the LAN.
+
+## Instructions
+
+### Step 0: Setup frp (on both remote and local servers)
 
 1. Download and extract the latest release of frp from [here](https://github.com/fatedier/frp/releases).
 2. Configure frp by editing the configuration (.ini) files on both servers based on the examples provided in this repository.
