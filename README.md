@@ -1,8 +1,8 @@
-# frp Double-Tunnel
+# frp Double Tunnel
 
 ## Use Case
 
-In this repository, we provide a simple solution to access a service running on a remote server. By following the steps outlined here, you will be able to access the service on your local server and local area network (LAN).
+In this repository, we provide a simple solution to access a service running on a remote server, from behind a firewall. Say, we're trying to access this service running on the remote server: 10.0.0.107:9090. After doing this full setup, you will be able to access this service on the local server (and LAN) on 127.0.0.1:69090 or <local-server-lan-ip>:69090.
 
 This solution is particularly useful when the local area network (LAN) is behind a strong firewall that blocks specific ports and protocols through deep packet inspection. By utilizing frp, you can bypass these restrictions and access a service running on a remote server within the LAN.
 
@@ -46,6 +46,7 @@ Sometimes, you may encounter the following error: `[W] [service.go:128] login to
 1. Check the firewall status on the server using the command: `firewall-cmd --zone=public --list-ports`.
 2. Add the firewall rules to open ports for the TCP protocol on ports 7000-7009 using the command: `firewall-cmd --zone=public --add-port=7000-7009/tcp --permanent`.
 3. Update the firewall configuration using the command: `firewall-cmd --reload`.
+4. *You may also need to allow these ports through the cloud platforms web console.*
 
 ## Contributions
 
