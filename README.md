@@ -1,51 +1,52 @@
 # frp Double-Tunnel
 
-## Example usecase
+## Use Case
 
-Say, we're trying to access this service running on the remote server: 10.0.0.107:9090.
-After doing this full setup, this service will be available 
-on the local server (and LAN) on 127.0.0.1:69090 or <local-server-lan-ip>:69090.
+In this repository, we provide a simple solution to access a service running on a remote server. By following the steps outlined here, you will be able to access the service on your local server and local area network (LAN).
+
+This solution is particularly useful when the local area network (LAN) is behind a strong firewall that blocks specific ports and protocols through deep packet inspection. By utilizing frp, you can bypass these restrictions and access a service running on a remote server within the LAN.
 
 ## Setup frp (on both remote and local servers)
 
-1. Download and extract latest release from [here](https://github.com/fatedier/frp/releases).
-2. Edit the configuration (.ini) files on both servers as per the examples given in this repo.
+1. Download and extract the latest release of frp from [here](https://github.com/fatedier/frp/releases).
+2. Configure frp by editing the configuration (.ini) files on both servers based on the examples provided in this repository.
 
-Step 1: START SERVER (@ Remote server)
+### Step 1: Start Server (Remote server)
+
 ```sh
 sudo ./frps -c frps.ini
 ```
 
-Step 2: START SERVER (@ Local server)
+### Step 2: Start Server (Local server)
+
 ```sh
 sudo ./frps -c frps.ini
 ```
 
-Step 3: START CLIENT (@ Local server)
+### Step 3: Start Client (Local server)
+
 ```sh
 ./frpc -c frpc.ini
 ```
 
-Step 4: START CLIENT (@ Remote server)
+### Step 4: Start Client (Remote server)
+
 ```sh
 ./frpc -c frpc.ini
 ```
 
-## FAQ
+## Frequently Asked Questions
 
-**1. How to allow the frp ports on the remote server?**
+**Q: How can I allow frp ports on the remote server?**
 
-`[W] [service.go:128] login to server failed: dial tcp [$IP]:7000: i/o timeout`
+**Solution from:** [#2905](https://github.com/fatedier/frp/issues/2905)
 
-I also encountered this problem on Oracle Cloud VMs. Solution from [#2905](https://github.com/fatedier/frp/issues/2905)
+Sometimes, you may encounter the following error: `[W] [service.go:128] login to server failed: dial tcp [$IP]:7000: i/o timeout`. I also encountered this problem on Oracle Cloud VMs. If you face this issue, follow these steps to resolve it:
 
-> Generally, this is due to the firewall settings on the server. I am using Tencent's lightweight server, and it can be successfully opened using the following command:
+1. Check the firewall status on the server using the command: `firewall-cmd --zone=public --list-ports`.
+2. Add the firewall rules to open ports for the TCP protocol on ports 7000-7009 using the command: `firewall-cmd --zone=public --add-port=7000-7009/tcp --permanent`.
+3. Update the firewall configuration using the command: `firewall-cmd --reload`.
 
-> To check the firewall status:
-> `firewall-cmd --zone=public --list-ports`
+## Contributions
 
-> To add the firewall rules to open ports for TCP protocol on ports 7000-7009:
-> `firewall-cmd --zone=public --add-port=7000-7009/tcp --permanent`
-
-> To update the firewall configuration:
-> `firewall-cmd --reload`
+Contributions are welcome! If you have any suggestions, ideas, or enhancements for this project, please feel free to open an issue or submit a pull request.
