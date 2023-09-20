@@ -1,8 +1,14 @@
 # frp Double-Tunnel
 
+## Example usecase
+
+Say, we're trying to access this service running on the remote server: 10.0.0.107:9090.
+After doing this full setup, this service will be available 
+on the local server (and LAN) on 127.0.0.1:69090 or <local-server-lan-ip>:69090.
+
 ## Setup frp (on both remote and local servers)
 
-1. Download and extract latest release from here.
+1. Download and extract latest release from [here](https://github.com/fatedier/frp/releases).
 2. Edit the configuration (.ini) files on both servers as per the examples given in this repo.
 
 Step 1: START SERVER (@ Remote server)
